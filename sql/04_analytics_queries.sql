@@ -107,6 +107,36 @@ FROM RegionSales r
 CROSS JOIN NationalAvg n
 ORDER BY r.RegionSales DESC;
 GO
+    
+-- ============================================================
+-- other method without cross join
+-- ============================================================
+WITH RegionSales AS (
+    SELECT
+        c.Region,
+        SUM(f.SalesAmount)        AS RegionSales,
+        SUM(f.Profit)             AS RegionProfit,
+        COUNT(DISTINCT f.OrderID) AS TotalOrders,
+        ROUND(AVG(f.SalesAmount), 2) AS AvgOrderValue
+    FROM dbo.Fact_Sales f
+    JOIN dbo.Dim_Customer c ON f.CustomerKey = c.CustomerKey
+    GROUP BY c.Region
+), 
+NationalAvg AS (
+    SELECT*,
+    AVG(RegionSales) over() AS NatAvgSales             -- avg sales of total sales by region
+   FROM RegionSales
+)
+   select *,
+    ROUND((RegionSales - NatAvgSales) / NatAvgSales * 100, 2) AS VsNationalAvgPct,
+    CASE
+        WHEN RegionSales > NatAvgSales THEN 'Above Average'
+        WHEN RegionSales < NatAvgSales THEN 'Below Average'
+        ELSE 'At Average'
+    END AS PerformanceStatus
+   from NationalAvg
+   ORDER BY RegionSales DESC
+GO    
 
 -- ============================================================
 -- QUERY 4: Customer Segment Profitability Breakdown
