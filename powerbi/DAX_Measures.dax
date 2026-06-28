@@ -120,12 +120,12 @@ IsTop5Product =
 -- Top N Products Sales (dynamic — uses a slicer with values 5,10,20)
 -- Create a disconnected table: TopN_Table = {5, 10, 20}
 Top N Sales =
-    VAR TopN = SELECTEDVALUE(TopN_Table[Value], 10)
+    VAR TopNValue = SELECTEDVALUE(TopN_Table[Value], 10)
     RETURN
     CALCULATE(
         [Total Sales],
         TOPN(
-            TopN,
+            TopNValue,
             ALL(Dim_Product[ProductName]),
             [Total Sales],
             DESC
