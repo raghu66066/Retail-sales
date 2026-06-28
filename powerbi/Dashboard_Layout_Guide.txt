@@ -1,0 +1,231 @@
+================================================================
+PROJECT 1: Retail Sales Performance Dashboard
+POWER BI LAYOUT & DESIGN GUIDE
+Author  : Raghu G | Data Analyst
+================================================================
+
+This document guides you to build the 3-page Power BI report
+step by step — canvas layout, visuals, slicers, and formatting.
+
+================================================================
+PAGE 1: EXECUTIVE SUMMARY (Overview)
+================================================================
+
+CANVAS SIZE: 1280 x 720 px (16:9 widescreen)
+THEME      : Use a dark-navy / white contrast theme
+             Primary color   : #1A2B4A (navy)
+             Accent color    : #00B4D8 (cyan)
+             Alert color     : #E63946 (red for negative KPIs)
+             Background      : #F5F7FA (light grey)
+
+── HEADER SECTION (top strip, full width, height ~60px) ────────
+  [ Retail Sales Performance Dashboard ]  |  [ Date Slicer ]
+  Background: #1A2B4A | Font: White, Bold, 18pt
+
+── ROW 1: KPI CARDS (6 cards, equal width) ────────────────────
+  Place these horizontally across the page below the header.
+
+  Card 1: Total Sales
+    Value   : [Total Sales]
+    Format  : ₹ #,##0
+    Icon    : Up/Down arrow using conditional formatting
+
+  Card 2: Total Profit
+    Value   : [Total Profit]
+    Format  : ₹ #,##0
+    Alert   : Turn RED if Profit < 0 (conditional format)
+
+  Card 3: Profit Margin %
+    Value   : [Profit Margin %]
+    Format  : 0.0%
+    Alert   : Turn RED if < 10%
+
+  Card 4: Total Orders
+    Value   : [Total Orders]
+    Format  : #,##0
+
+  Card 5: YoY Growth %
+    Value   : [YoY Growth %]
+    Format  : +0.0%;-0.0%
+    Alert   : GREEN if positive, RED if negative
+
+  Card 6: Avg Order Value
+    Value   : [Avg Order Value]
+    Format  : ₹ #,##0
+
+── ROW 2: MAIN VISUALS (split 60/40) ──────────────────────────
+
+  LEFT (60%): Line Chart — Monthly Sales Trend
+    X-Axis  : Dim_Date[FullDate] (Month-Year hierarchy)
+    Y-Axis  : [Total Sales], [Total Profit]
+    Legend  : Sales vs Profit (two lines)
+    Title   : "Monthly Sales & Profit Trend"
+    Show markers, no gridlines on X-axis
+
+  RIGHT (40%): Donut Chart — Sales by Category
+    Values  : [Total Sales]
+    Legend  : Dim_Product[Category]
+    Title   : "Sales by Category"
+    Show data labels (% + category name)
+
+── ROW 3: TABLE + BAR CHART ────────────────────────────────────
+
+  LEFT (50%): Clustered Bar Chart — Sales by Region
+    Y-Axis  : Dim_Customer[Region]
+    X-Axis  : [Total Sales]
+    Color   : Single color (#00B4D8), sort descending
+    Data labels ON
+    Title   : "Sales by Region"
+
+  RIGHT (50%): Table — Top 10 Products
+    Columns : ProductName, Category, [Total Sales],
+              [Total Profit], [Profit Margin %]
+    Sort    : [Total Sales] DESC
+    Conditional formatting on Profit Margin % column
+      → Green  if > 20%
+      → Yellow if 10–20%
+      → Red    if < 10%
+
+── SLICER PANEL (left sidebar, ~120px wide) ───────────────────
+  Slicer 1: Year          (Dim_Date[Year])
+  Slicer 2: Category      (Dim_Product[Category])
+  Slicer 3: Region        (Dim_Customer[Region])
+  Slicer 4: Segment       (Dim_Customer[Segment])
+  Style: Dropdown for Year, Checkbox list for others
+
+── FOOTER ─────────────────────────────────────────────────────
+  "Last Refreshed: " & TODAY()   (use a card with DAX text)
+  Background: #1A2B4A | Font: White, 9pt
+
+================================================================
+PAGE 2: REGIONAL DRILL-THROUGH (Deep Dive)
+================================================================
+
+PURPOSE: User right-clicks a Region on Page 1 → Drill Through here
+SETUP  : Page 2 → Format → Page Information → Drill Through
+         Add Dim_Customer[Region] as Drill-through field
+
+── HEADER ──────────────────────────────────────────────────────
+  [ Regional Analysis: {Region} ]  ← Dynamic title using DAX:
+  Title Measure =
+    "Regional Analysis: " & SELECTEDVALUE(Dim_Customer[Region], "All Regions")
+
+── VISUAL LAYOUT ───────────────────────────────────────────────
+
+  Top Row (KPI Cards, same as Page 1 but filtered to region):
+    Total Sales | Total Orders | Profit Margin % | Late Shipment %
+
+  Middle Left: Stacked Column Chart
+    X-Axis  : Dim_Date[MonthName] (sorted by Month number)
+    Y-Axis  : [Total Sales]
+    Legend  : Dim_Product[Category]
+    Title   : "Monthly Sales by Category"
+
+  Middle Right: Scatter Chart (Sales vs Profit by City)
+    X-Axis  : [Total Sales]
+    Y-Axis  : [Total Profit]
+    Size    : [Total Orders]
+    Legend  : Dim_Customer[City]
+    Title   : "City Performance — Sales vs Profit"
+    (Big bubbles = more orders; top-right = high sales & profit)
+
+  Bottom: Matrix Heat Map
+    Rows    : Dim_Customer[City]
+    Columns : Dim_Product[Category]
+    Values  : [Total Sales]
+    Format  : Background color scale
+              → Dark blue (#1A2B4A) = highest sales
+              → White (#FFFFFF)     = lowest sales
+    Title   : "City × Category Sales Heat Map"
+
+  Back Button: Insert → Buttons → Back (top-left corner)
+    Action  : Back (navigate to Page 1)
+
+================================================================
+PAGE 3: EXCEPTION / RISK REPORT (Executive Alert Page)
+================================================================
+
+PURPOSE: Flags orders that need attention — high discounts,
+         loss orders, late shipments. Exception-driven design.
+
+── HEADER ──────────────────────────────────────────────────────
+  [ ⚠ Operational Risk Alerts ]
+  Background: #E63946 (alert red) | Font: White, Bold
+
+── RISK KPI ROW ────────────────────────────────────────────────
+  Card 1: High Discount Orders  (DiscountPct > 15)
+    Value : [High Discount Orders]
+    Alert : Always show in RED
+
+  Card 2: Loss Orders
+    Value : [Loss Orders]
+    Alert : Always show in RED
+
+  Card 3: Late Shipments
+    Value : [Late Shipments]
+
+  Card 4: Late Shipment %
+    Value : [Late Shipment %]
+    Alert : RED if > 15%
+
+── NARRATIVE TEXT VISUAL ───────────────────────────────────────
+  Insert → Text Box (or Smart Narrative visual)
+  Use measure: [Executive Summary Text]
+  Place at top-right of page
+  Background: White card with thin blue border
+  Font: Segoe UI, 11pt, Grey (#555555)
+
+── RISK TABLE ──────────────────────────────────────────────────
+  Table visual with data from v_Sales_RiskFlags view:
+  Columns:
+    OrderID | OrderDate | Category | ProductName |
+    Region  | SalesAmount | Profit | DiscountPct | ShipDays | RiskFlag
+
+  Conditional Formatting on RiskFlag:
+    "Loss Order"          → RED background
+    "High Discount Risk"  → AMBER background
+    "Late Shipment Risk"  → YELLOW background
+    "Normal"              → WHITE background
+
+  Add Filter: RiskFlag ≠ "Normal" (show only risky orders)
+  Sort: Profit ASC (worst losses on top)
+
+── BAR CHART: Risk Distribution ────────────────────────────────
+  X-Axis  : RiskFlag
+  Y-Axis  : COUNT of OrderID
+  Color   : Each bar = separate color per risk type
+  Title   : "Orders by Risk Category"
+  Data labels ON
+
+================================================================
+PUBLISHING & SHARING GUIDE
+================================================================
+
+1. FILE SAVE
+   Save as: RetailSales_Dashboard_RaghuG.pbix
+
+2. CONNECT TO SQL SERVER
+   Home → Get Data → SQL Server
+   Server: localhost  Database: RetailSalesDB
+   Import mode (not Direct Query for this project)
+
+3. MODEL VIEW CHECKLIST
+   ✓ All 4 relationships active and correct direction
+   ✓ Dim_Date marked as Date Table
+   ✓ Surrogate key columns hidden from Report View
+   ✓ Measures organised in _Measures table
+   ✓ Column names are business-friendly (no underscores visible)
+
+4. REPORT VIEW CHECKLIST
+   ✓ Page 1: Executive Summary — slicers working
+   ✓ Page 2: Drill-through from Region working
+   ✓ Page 3: Risk filters applied, conditional formatting on
+   ✓ All KPI cards showing correct values
+   ✓ Mobile layout configured (View → Mobile Layout)
+
+5. FOR PORTFOLIO / GITHUB
+   Export PDF screenshot: File → Export → PDF
+   Take 3 screenshots (one per page)
+   Add to GitHub README as preview images
+
+================================================================

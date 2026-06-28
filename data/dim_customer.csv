@@ -1,0 +1,201 @@
+CustomerKey,CustomerName,Segment,Region,City
+1,Rajesh Reddy,Consumer,East,Hyderabad
+2,Divya Nair,Consumer,Central,Delhi
+3,Vijay Shah,Consumer,North,Delhi
+4,Rohit Gupta,Consumer,Central,Hyderabad
+5,Manoj Shah,Corporate,West,Surat
+6,Suresh Sharma,Corporate,West,Kolkata
+7,Suresh Nair,Corporate,East,Delhi
+8,Rahul Das,Consumer,East,Kolkata
+9,Nisha Kumar,Consumer,West,Ahmedabad
+10,Sneha Das,Consumer,Central,Chennai
+11,Rajesh Mehta,Corporate,North,Mumbai
+12,Sunita Gupta,Home Office,North,Hyderabad
+13,Sneha Das,Home Office,West,Kolkata
+14,Anjali Mehta,Home Office,South,Chennai
+15,Manoj Patel,Corporate,Central,Hyderabad
+16,Anjali Mishra,Small Business,East,Ahmedabad
+17,Divya Rao,Consumer,South,Mumbai
+18,Arjun Das,Home Office,North,Hyderabad
+19,Vijay Rao,Corporate,West,Pune
+20,Rajesh Mishra,Corporate,East,Bangalore
+21,Divya Kumar,Small Business,Central,Pune
+22,Meena Gupta,Corporate,Central,Jaipur
+23,Rahul Verma,Consumer,South,Bangalore
+24,Sunita Shah,Consumer,West,Pune
+25,Nisha Mishra,Home Office,Central,Mumbai
+26,Sunita Reddy,Home Office,East,Delhi
+27,Kavya Shah,Corporate,West,Mumbai
+28,Geeta Kumar,Corporate,Central,Delhi
+29,Rajesh Joshi,Corporate,South,Kolkata
+30,Anjali Sharma,Home Office,West,Mumbai
+31,Sneha Mehta,Home Office,South,Mumbai
+32,Divya Patel,Consumer,West,Delhi
+33,Lakshmi Nair,Corporate,West,Ahmedabad
+34,Anjali Kumar,Small Business,South,Ahmedabad
+35,Geeta Singh,Home Office,West,Kolkata
+36,Naveen Mishra,Consumer,South,Hyderabad
+37,Rahul Rao,Consumer,Central,Ahmedabad
+38,Divya Gupta,Consumer,North,Mumbai
+39,Divya Patel,Consumer,East,Delhi
+40,Sanjay Gupta,Home Office,West,Hyderabad
+41,Lakshmi Nair,Small Business,South,Jaipur
+42,Pooja Singh,Consumer,North,Pune
+43,Meena Shah,Small Business,West,Mumbai
+44,Sunita Reddy,Consumer,West,Kolkata
+45,Sneha Gupta,Corporate,South,Ahmedabad
+46,Naveen Nair,Small Business,South,Chennai
+47,Naveen Gupta,Consumer,West,Ahmedabad
+48,Sneha Verma,Consumer,North,Hyderabad
+49,Anjali Shah,Small Business,West,Hyderabad
+50,Kiran Verma,Corporate,West,Mumbai
+51,Kiran Kumar,Small Business,East,Pune
+52,Manoj Pillai,Corporate,South,Chennai
+53,Rohit Verma,Consumer,East,Mumbai
+54,Priya Pillai,Corporate,North,Ahmedabad
+55,Rahul Iyer,Consumer,Central,Delhi
+56,Sunita Gupta,Small Business,North,Surat
+57,Divya Verma,Consumer,West,Surat
+58,Vijay Rao,Home Office,South,Kolkata
+59,Divya Kumar,Small Business,South,Chennai
+60,Naveen Rao,Consumer,North,Jaipur
+61,Nisha Reddy,Consumer,Central,Hyderabad
+62,Sanjay Kumar,Corporate,East,Delhi
+63,Divya Mehta,Home Office,South,Jaipur
+64,Lakshmi Joshi,Consumer,Central,Chennai
+65,Sunita Reddy,Corporate,East,Delhi
+66,Sneha Nair,Home Office,East,Surat
+67,Rohit Rao,Corporate,East,Ahmedabad
+68,Rekha Kumar,Consumer,North,Pune
+69,Suresh Verma,Consumer,East,Bangalore
+70,Rajesh Kumar,Corporate,West,Ahmedabad
+71,Manoj Shah,Consumer,North,Delhi
+72,Manoj Nair,Consumer,East,Surat
+73,Lakshmi Nair,Small Business,South,Mumbai
+74,Kavya Mehta,Consumer,East,Hyderabad
+75,Sunita Gupta,Consumer,East,Ahmedabad
+76,Pooja Nair,Corporate,South,Bangalore
+77,Pooja Sharma,Corporate,East,Pune
+78,Sunita Gupta,Home Office,South,Delhi
+79,Kiran Verma,Small Business,South,Hyderabad
+80,Naveen Mehta,Home Office,South,Hyderabad
+81,Amit Singh,Small Business,East,Chennai
+82,Rahul Kumar,Home Office,Central,Pune
+83,Sunita Rao,Consumer,North,Chennai
+84,Anjali Kumar,Consumer,North,Surat
+85,Pooja Mehta,Home Office,West,Surat
+86,Sanjay Reddy,Small Business,Central,Hyderabad
+87,Suresh Verma,Small Business,North,Ahmedabad
+88,Lakshmi Singh,Home Office,West,Delhi
+89,Sunita Rao,Home Office,North,Chennai
+90,Sanjay Joshi,Small Business,East,Pune
+91,Manoj Joshi,Corporate,South,Pune
+92,Sunita Das,Corporate,Central,Surat
+93,Kavya Das,Consumer,East,Chennai
+94,Rohit Shah,Home Office,West,Jaipur
+95,Naveen Singh,Small Business,South,Delhi
+96,Kavya Rao,Consumer,South,Chennai
+97,Divya Singh,Corporate,North,Mumbai
+98,Divya Pillai,Consumer,West,Pune
+99,Rajesh Singh,Small Business,West,Pune
+100,Divya Nair,Consumer,North,Pune
+101,Divya Iyer,Small Business,North,Ahmedabad
+102,Divya Reddy,Small Business,South,Jaipur
+103,Sunita Rao,Small Business,Central,Ahmedabad
+104,Pooja Mishra,Corporate,West,Jaipur
+105,Suresh Gupta,Home Office,Central,Jaipur
+106,Rajesh Gupta,Home Office,West,Delhi
+107,Manoj Joshi,Corporate,East,Kolkata
+108,Arjun Patel,Corporate,South,Hyderabad
+109,Kiran Nair,Corporate,North,Pune
+110,Pooja Rao,Small Business,West,Mumbai
+111,Rohit Shah,Small Business,Central,Mumbai
+112,Vijay Das,Small Business,North,Kolkata
+113,Kavya Das,Small Business,Central,Ahmedabad
+114,Nisha Gupta,Small Business,South,Chennai
+115,Pooja Pillai,Consumer,West,Kolkata
+116,Sunita Das,Corporate,West,Bangalore
+117,Nisha Sharma,Small Business,Central,Surat
+118,Sunita Sharma,Consumer,West,Bangalore
+119,Naveen Iyer,Consumer,East,Pune
+120,Arjun Singh,Small Business,East,Kolkata
+121,Kiran Kumar,Small Business,East,Delhi
+122,Rekha Sharma,Consumer,East,Hyderabad
+123,Rajesh Patel,Consumer,North,Hyderabad
+124,Rohit Sharma,Corporate,South,Bangalore
+125,Rekha Reddy,Corporate,West,Chennai
+126,Meena Iyer,Consumer,South,Chennai
+127,Sneha Sharma,Home Office,Central,Pune
+128,Kiran Singh,Consumer,Central,Hyderabad
+129,Sneha Joshi,Consumer,Central,Mumbai
+130,Meena Shah,Home Office,North,Ahmedabad
+131,Rajesh Rao,Consumer,West,Jaipur
+132,Sneha Shah,Home Office,West,Bangalore
+133,Pooja Iyer,Home Office,Central,Ahmedabad
+134,Rekha Mishra,Small Business,Central,Chennai
+135,Arjun Gupta,Consumer,East,Jaipur
+136,Divya Mishra,Small Business,East,Mumbai
+137,Rekha Rao,Corporate,West,Hyderabad
+138,Meena Kumar,Home Office,East,Surat
+139,Manoj Kumar,Consumer,Central,Hyderabad
+140,Rahul Gupta,Small Business,West,Ahmedabad
+141,Divya Pillai,Small Business,West,Mumbai
+142,Rahul Joshi,Corporate,West,Hyderabad
+143,Kavya Mehta,Small Business,Central,Ahmedabad
+144,Meena Shah,Home Office,East,Jaipur
+145,Suresh Joshi,Home Office,South,Delhi
+146,Geeta Singh,Home Office,North,Ahmedabad
+147,Manoj Iyer,Corporate,South,Jaipur
+148,Suresh Joshi,Consumer,South,Chennai
+149,Divya Mehta,Corporate,East,Mumbai
+150,Manoj Nair,Home Office,North,Mumbai
+151,Lakshmi Joshi,Corporate,West,Delhi
+152,Amit Joshi,Small Business,West,Jaipur
+153,Arjun Iyer,Consumer,East,Jaipur
+154,Sneha Patel,Small Business,West,Delhi
+155,Vijay Verma,Corporate,South,Surat
+156,Kavya Patel,Corporate,North,Ahmedabad
+157,Pooja Gupta,Small Business,West,Jaipur
+158,Kavya Shah,Home Office,Central,Surat
+159,Priya Reddy,Corporate,South,Chennai
+160,Sunita Patel,Corporate,South,Bangalore
+161,Lakshmi Patel,Corporate,North,Pune
+162,Naveen Pillai,Home Office,North,Hyderabad
+163,Kavya Joshi,Small Business,North,Hyderabad
+164,Suresh Singh,Small Business,North,Ahmedabad
+165,Divya Nair,Home Office,South,Delhi
+166,Priya Iyer,Home Office,Central,Surat
+167,Kavya Mishra,Consumer,West,Chennai
+168,Manoj Das,Home Office,Central,Ahmedabad
+169,Rekha Mishra,Consumer,Central,Mumbai
+170,Pooja Rao,Home Office,North,Delhi
+171,Divya Sharma,Home Office,Central,Mumbai
+172,Anjali Pillai,Small Business,East,Bangalore
+173,Vijay Shah,Small Business,North,Jaipur
+174,Meena Shah,Home Office,East,Delhi
+175,Anjali Rao,Small Business,West,Chennai
+176,Sunita Das,Consumer,West,Delhi
+177,Arjun Kumar,Home Office,North,Pune
+178,Sanjay Sharma,Small Business,West,Mumbai
+179,Rohit Mehta,Small Business,West,Mumbai
+180,Rohit Kumar,Corporate,East,Jaipur
+181,Manoj Pillai,Consumer,North,Surat
+182,Divya Iyer,Home Office,Central,Mumbai
+183,Lakshmi Shah,Consumer,South,Delhi
+184,Naveen Reddy,Corporate,West,Chennai
+185,Sanjay Kumar,Small Business,West,Jaipur
+186,Divya Mishra,Corporate,West,Hyderabad
+187,Nisha Nair,Consumer,East,Pune
+188,Arjun Kumar,Consumer,East,Chennai
+189,Vijay Pillai,Corporate,West,Ahmedabad
+190,Rekha Mehta,Home Office,Central,Ahmedabad
+191,Kiran Mishra,Home Office,South,Hyderabad
+192,Vijay Das,Corporate,West,Mumbai
+193,Arjun Pillai,Small Business,West,Bangalore
+194,Rekha Verma,Corporate,Central,Surat
+195,Arjun Reddy,Small Business,North,Ahmedabad
+196,Naveen Sharma,Corporate,West,Bangalore
+197,Rahul Pillai,Home Office,East,Surat
+198,Manoj Das,Consumer,East,Ahmedabad
+199,Kiran Rao,Small Business,Central,Mumbai
+200,Nisha Patel,Corporate,East,Hyderabad

@@ -1,0 +1,228 @@
+-- ============================================================
+-- PROJECT 1: Retail Sales Performance Dashboard
+-- POWER BI DAX MEASURES — Complete Reference
+-- Author  : Raghu G | Data Analyst
+-- ============================================================
+-- HOW TO USE:
+--   In Power BI Desktop → Home → Enter Data (to create measure table)
+--   OR: select any table → New Measure → paste each formula below
+-- ============================================================
+
+
+-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-- TABLE: _Measures  (create a blank table for all measures)
+-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+-- ── SECTION 1: Core KPI Measures ────────────────────────────
+
+Total Sales =
+    SUM(Fact_Sales[SalesAmount])
+
+Total Profit =
+    SUM(Fact_Sales[Profit])
+
+Total Orders =
+    DISTINCTCOUNT(Fact_Sales[OrderID])
+
+Total Units Sold =
+    SUM(Fact_Sales[Quantity])
+
+Total Customers =
+    DISTINCTCOUNT(Fact_Sales[CustomerKey])
+
+Avg Order Value =
+    DIVIDE([Total Sales], [Total Orders], 0)
+
+Profit Margin % =
+    DIVIDE([Total Profit], [Total Sales], 0) * 100
+
+Avg Discount % =
+    AVERAGE(Fact_Sales[DiscountPct])
+
+Avg Ship Days =
+    AVERAGE(Fact_Sales[ShipDays])
+
+
+-- ── SECTION 2: Time Intelligence Measures ───────────────────
+
+-- Previous Year Sales (for YoY comparison)
+Sales PY =
+    CALCULATE(
+        [Total Sales],
+        SAMEPERIODLASTYEAR(Dim_Date[FullDate])
+    )
+
+-- Year-over-Year Growth %
+YoY Growth % =
+    DIVIDE(
+        [Total Sales] - [Sales PY],
+        [Sales PY],
+        0
+    ) * 100
+
+-- Previous Month Sales
+Sales PM =
+    CALCULATE(
+        [Total Sales],
+        PREVIOUSMONTH(Dim_Date[FullDate])
+    )
+
+-- Month-over-Month Growth %
+MoM Growth % =
+    DIVIDE(
+        [Total Sales] - [Sales PM],
+        [Sales PM],
+        0
+    ) * 100
+
+-- Year-To-Date Sales
+Sales YTD =
+    TOTALYTD(
+        [Total Sales],
+        Dim_Date[FullDate]
+    )
+
+-- Quarter-To-Date Sales
+Sales QTD =
+    TOTALQTD(
+        [Total Sales],
+        Dim_Date[FullDate]
+    )
+
+-- Running Total (cumulative sales over time)
+Sales Running Total =
+    CALCULATE(
+        [Total Sales],
+        FILTER(
+            ALL(Dim_Date),
+            Dim_Date[FullDate] <= MAX(Dim_Date[FullDate])
+        )
+    )
+
+
+-- ── SECTION 3: Ranking & Top N Measures ─────────────────────
+
+-- Rank products by Sales within each Category
+Product Sales Rank =
+    RANKX(
+        ALLSELECTED(Dim_Product[ProductName]),
+        [Total Sales],
+        ,
+        DESC,
+        DENSE
+    )
+
+-- Top 5 Products flag (for conditional formatting)
+IsTop5Product =
+    IF([Product Sales Rank] <= 5, 1, 0)
+
+-- Top N Products Sales (dynamic — uses a slicer with values 5,10,20)
+-- Create a disconnected table: TopN_Table = {5, 10, 20}
+Top N Sales =
+    VAR TopN = SELECTEDVALUE(TopN_Table[Value], 10)
+    RETURN
+    CALCULATE(
+        [Total Sales],
+        TOPN(
+            TopN,
+            ALL(Dim_Product[ProductName]),
+            [Total Sales],
+            DESC
+        )
+    )
+
+
+-- ── SECTION 4: Conditional KPI Measures ─────────────────────
+
+-- Profit Status (for KPI card color)
+Profit Status =
+    IF([Total Profit] >= 0, "Profitable", "Loss")
+
+-- High Discount Order Count (DiscountPct > 15)
+High Discount Orders =
+    CALCULATE(
+        [Total Orders],
+        Fact_Sales[DiscountPct] > 15
+    )
+
+-- Late Shipment Orders (ShipDays > 5)
+Late Shipments =
+    CALCULATE(
+        [Total Orders],
+        Fact_Sales[ShipDays] > 5
+    )
+
+-- Late Shipment % (for KPI alert)
+Late Shipment % =
+    DIVIDE([Late Shipments], [Total Orders], 0) * 100
+
+-- Loss Orders (Profit < 0)
+Loss Orders =
+    CALCULATE(
+        [Total Orders],
+        Fact_Sales[Profit] < 0
+    )
+
+-- Loss Order % 
+Loss Order % =
+    DIVIDE([Loss Orders], [Total Orders], 0) * 100
+
+
+-- ── SECTION 5: Dynamic Narrative Text (for Text visual) ─────
+
+-- Summary narrative for exec page (uses CONCATENATE + measures)
+Executive Summary Text =
+    "As of " & FORMAT(TODAY(), "MMM YYYY") & ", total sales stand at ₹" &
+    FORMAT([Total Sales], "#,##0") &
+    " across " & FORMAT([Total Orders], "#,##0") & " orders." &
+    " Profit margin is " & FORMAT([Profit Margin %], "0.0") & "%." &
+    " YoY growth is " & FORMAT([YoY Growth %], "+0.0;-0.0") & "%."
+
+
+-- ── SECTION 6: Matrix Heat Map Values ───────────────────────
+
+-- Used in Matrix visual: Rows = Region, Cols = Category
+-- Apply conditional formatting → Background color scale on this measure
+
+Sales Intensity =
+    DIVIDE(
+        [Total Sales],
+        CALCULATE([Total Sales], ALL(Dim_Customer[Region])),
+        0
+    )
+
+-- Category contribution % within each region
+Category Mix % =
+    DIVIDE(
+        [Total Sales],
+        CALCULATE([Total Sales], ALL(Dim_Product[Category])),
+        0
+    ) * 100
+
+
+-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-- POWER BI DATA MODEL SETUP NOTES
+-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+/*
+RELATIONSHIPS (1-to-Many, Single Direction):
+  Dim_Product[ProductKey]    → Fact_Sales[ProductKey]
+  Dim_Customer[CustomerKey]  → Fact_Sales[CustomerKey]
+  Dim_Date[DateKey]          → Fact_Sales[OrderDateKey]   ← active
+  Dim_Date[DateKey]          → Fact_Sales[ShipDateKey]    ← inactive
+     (use USERELATIONSHIP() in DAX to activate ShipDate relationship)
+
+MARK AS DATE TABLE:
+  Right-click Dim_Date → Mark as Date Table → select FullDate column
+  This enables TOTALYTD, SAMEPERIODLASTYEAR, etc.
+
+HIDE FROM REPORT VIEW (keep model clean):
+  Fact_Sales[ProductKey], Fact_Sales[CustomerKey]
+  Fact_Sales[OrderDateKey], Fact_Sales[ShipDateKey]
+  All surrogate integer key columns in Dim tables
+
+CROSS-FILTER DIRECTION:
+  All relationships → Single (Dim → Fact)
+  Prevents double-counting in complex slicers
+*/
