@@ -135,7 +135,7 @@ NationalAvg AS (
         ELSE 'At Average'
     END AS PerformanceStatus
    from NationalAvg
-   ORDER BY RegionSales DESC
+   ORDER BY RegionSales DESC;
 GO    
 
 -- ============================================================
