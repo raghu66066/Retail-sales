@@ -117,7 +117,7 @@ SELECT
     -- Profit Margin %
     CASE
         WHEN f.SalesAmount = 0 THEN 0
-        ELSE ROUND((f.Profit / f.SalesAmount) * 100, 2)
+        ELSE ROUND((f.Profit / f.SalesAmount) * 100, 2) -- this will give results in decimals with more trailing zero, to remove trailing zero so use(CAST(column AS FLOAT)
     END AS ProfitMarginPct
 FROM dbo.Fact_Sales f
 JOIN dbo.Dim_Product  p ON f.ProductKey  = p.ProductKey
