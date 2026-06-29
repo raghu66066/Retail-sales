@@ -113,7 +113,7 @@ SETUP  : Page 2 → Format → Page Information → Drill Through
 ── VISUAL LAYOUT ───────────────────────────────────────────────
 
   Top Row (KPI Cards, same as Page 1 but filtered to region):
-    Total Sales | Total Orders | Profit Margin % | Late Shipment %
+    Total Sales | Total Orders | Profit Margin %
 
   Middle Left: Stacked Column Chart
     X-Axis  : Dim_Date[MonthName] (sorted by Month number)
