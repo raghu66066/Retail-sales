@@ -137,6 +137,9 @@ RANK() OVER (
 - Bar chart: Sales by Region
 - Table: Top 10 Products with conditional formatting
 - Slicers: Year, Category, Region, Segment
+  
+  <img width="1222" height="706" alt="image" src="https://github.com/user-attachments/assets/115a58fc-789e-4266-bc84-d76dfff0eb87" />
+
 
 ### Page 2: Regional Drill-Through
 - Drill-through from Region → deep-dive analysis
@@ -144,11 +147,17 @@ RANK() OVER (
 - Scatter chart: City Sales vs Profit (bubble size = order count)
 - Matrix heat map: City × Category sales intensity
 
+  <img width="1226" height="707" alt="image" src="https://github.com/user-attachments/assets/ab0f6249-4ea4-413d-9fdc-3121cb5b3087" />
+
+
 ### Page 3: Risk & Exception Report
 - Alert KPI cards (High Discount Orders, Loss Orders, Late Shipments)
 - Dynamic narrative text summary
 - Risk-flagged order table with conditional row coloring
 - Risk distribution bar chart
+
+<img width="1234" height="707" alt="image" src="https://github.com/user-attachments/assets/79128996-3ce0-40f8-8302-111aed72cedd" />
+
 
 ---
 
